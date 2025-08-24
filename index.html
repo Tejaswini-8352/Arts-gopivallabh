@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GopiVAllabh  Art Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f172a;       /* slate-900 */
+      --panel:#111827;    /* gray-900 */
+      --muted:#94a3b8;    /* slate-400 */
+      --text:#e5e7eb;     /* gray-200 */
+      --brand:#22d3ee;    /* cyan-400 */
+      --brand-2:#a78bfa;  /* violet-400 */
+      --ring: rgba(34,211,238,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{
+    margin:0; 
+    padding:0; 
+    background:linear-gradient(180deg,var(--bg),#060914); 
+    color:var(--text); 
+    font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto;
+}
+    a{
+    color:inherit; 
+    text-decoration:none
+}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(8px);
+      background:rgba(2,6,23,.55); border-bottom:1px solid rgba(148,163,184,.12);
+    }
+    .nav{max-width:1100px;
+     margin:auto; display:flex; 
+     align-items:center; 
+     justify-content:space-between; 
+     padding:14px 18px;
+    }
+    .brand{
+    display:flex; 
+    align-items:center; 
+    gap:10px; 
+    font-weight:700; 
+    letter-spacing:.5px
+}
+    .badge{
+    width:36px; 
+    height:36px; 
+    border-radius:12px; 
+    background:linear-gradient(135deg,var(--brand),var(--brand-2)); 
+    display:grid; 
+    place-items:center; 
+    color:#0b1020; 
+    font-weight:900}
+    .cta{
+    display:inline-flex; 
+    align-items:center; 
+    gap:8px; padding:10px 14px; 
+    border-radius:14px; 
+    background:linear-gradient(135deg,rgba(34,211,238,.15),rgba(167,139,250,.15)); 
+    border:1px solid rgba(226,232,240,.15); 
+    box-shadow:0 0 0 0 var(--ring); 
+    transition:.2s
+}
+    .cta:hover{
+    transform:translateY(-1px); 
+    box-shadow:0 0 0 6px var(--ring)}
+
+    /* Hero */
+    .hero{
+    max-width:1100px; 
+    margin:24px auto 10px; 
+    padding:24px 18px 0; 
+    display:grid; 
+    grid-template-columns:1.5fr 1fr; 
+    gap:28px
+}
+    .hero .title{
+    font-size:clamp(28px,4.2vw,48px); 
+    line-height:1.1; font-weight:700;
+}
+    .hero p{
+    color:var(--muted); 
+    margin:10px 0 16px}
+    .hero .actions{
+    display:flex; 
+    gap:12px; 
+    flex-wrap:wrap}
+    .btn{
+    display:inline-flex; 
+    align-items:center; 
+    gap:10px; 
+    padding:12px 16px; 
+    border-radius:14px; 
+    border:1px solid rgba(226,232,240,.15); 
+    cursor:pointer; 
+    transition:.2s
+}
+    .btn.primary{
+    background:linear-gradient(135deg,var(--brand),var(--brand-2)); 
+    color:#0b1020; 
+    font-weight:700
+}
+    .btn.ghost{
+    background:rgba(148,163,184,.08)
+}
+    .btn:hover{
+    transform:translateY(-1px)
+}
+
+    /* Gallery */
+    .section{
+    max-width:1100px; 
+    margin:28px auto; 
+    padding:0 18px}
+    .section h2{
+    font-size:clamp(22px,3vw,30px); 
+    margin:10px 0 12px}
+    .muted{ 
+    color:var(--muted)
+}
+
+    .grid{
+    display:grid; 
+    grid-template-columns:repeat(12,1fr); 
+    gap:14px
+}
+    .card{
+    grid-column:span 12; 
+    background:linear-gradient(180deg,rgba(148,163,184,.08),rgba(148,163,184,.04)); 
+    border:3px solid rgba(148,163,184,.15); 
+    border-radius:25px; 
+    overflow:hidden; 
+    position:relative
+}
+    .card img{
+    width:100%; 
+    height:460px; 
+    object-fit:cover; 
+    display:block;
+}
+    .card .meta{
+        display:flex; 
+        align-items:center; 
+        justify-content:space-between; 
+        padding:10px 12px
+    }
+    .pill{
+    font-size:12px; 
+    padding:6px 10px; 
+    border-radius:999px; 
+    background:rgba(148,163,184,.12); 
+    color:var(--muted); 
+    border:1px solid rgba(148,163,184,.15)
+}
+
+    /* Lightbox (pure CSS) */
+    .lightbox{
+    position:fixed; 
+    inset:0; 
+    background:rgba(0,0,0,.85); 
+    display:none; 
+    align-items:center; 
+    justify-content:center; 
+    padding:24px
+}
+    .lightbox img{
+    max-width:min(1100px,95vw); 
+    max-height:85vh; 
+    border-radius:16px; 
+    box-shadow:0 10px 40px rgba(0,0,0,.6)
+}
+    .lightbox:target{
+        display:flex}
+    .close{
+    position:fixed; 
+    top:18px; right:18px; 
+    background:#0b1020; 
+    border:1px solid rgba(148,163,184,.25); 
+    color:#e5e7eb; 
+    padding:8px 12px; 
+    border-radius:12px}
+
+    /* Responsive columns */
+    @media (min-width:640px){ .card{grid-column:span 6} }
+    @media (min-width:1024px){ .card{grid-column:span 4} .hero{grid-template-columns:1.4fr 1fr} }
+
+    /* Footer */
+    footer{margin-top:36px; border-top:1px solid rgba(148,163,184,.12); padding:16px 18px; text-align:center; color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="brand"><span class="badge">GA</span> GopiVallabh ArtWorks</div>
+     <a href=https://www.instagram.com/pencil_art1675?igsh=MTJmb2sweXZlNWZybw== target="_blank" class="btn">My Instagram</a>
+
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1 class="title">Original Artworks & Custom Commissions</h1>
+      <p>Browse a curated selection of my recent pieces. To commission a custom artwork or buy any piece, click <strong>Order via Google Form</strong> and submit your details. You’ll get an instant confirmation email.</p>
+      <div class="actions">
+        <!-- 🔗 Paste your Google Form link here too (primary CTA) -->
+        <a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfCW0iOUncz1Ed2tUdai8kGtcvDvSZMC2o0f-_JUZNxpLbrdw/viewform?usp=header" target="_blank" rel="noopener">Order / Commission Now</a>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="height:100%">
+        <img src="D:/tejuu/mini/my website/9.jpg" alt="Featured artwork" loading="lazy" style="height:100%; object-fit:cover;">
+      </div>
+    </div>
+  </section>
+
+    <div class="grid">
+      <!-- Card 1 -->
+      <article class="card">
+        <a href="#art-1"><img src="D:/tejuu/mini/my website/2.jpg" alt="Peacock hues on canvas" loading="lazy"></a>
+        <div class="meta">
+          <span>Lord Venkateshwara</span>
+         
+        </div>
+      </article>
+      <!-- Lightbox 1 -->
+     
+
+      <!-- Card 2 -->
+      <article class="card">
+        <a href="#art-2"><img src="D:/tejuu/mini/my website/1.jpg" alt="Krishna portrait in pastels" loading="lazy"></a>
+        <div class="meta">
+          <span>Lord Narasimha</span>
+          
+        </div>
+      </article>
+     
+
+      <!-- Card 3 -->
+      <article class="card">
+        <a href="#art-3"><img src="D:/tejuu/mini/my website/3.jpg" alt="Mandala intricate pattern" loading="lazy"></a>
+        <div class="meta">
+          <span>Cosmic Mandala</span>
+         
+        </div>
+      </article>
+
+
+      <!-- Card 4 -->
+      <article class="card">
+        <a href="#art-4"><img src="D:/tejuu/mini/my website/11.jpg" alt="Landscape sunset warm tones" loading="lazy"></a>
+        <div class="meta">
+          <span>Peacock Mandala</span>
+          
+        </div>
+      </article>
+     
+      <!-- Card 5 -->
+      <article class="card">
+        <a href="#art-5"><img src="D:/tejuu/mini/my website/4.jpg" alt="Portrait sketch pencil" loading="lazy"></a>
+        <div class="meta">
+          <span>Wall Art</span>
+          
+        </div>
+      </article>
+     
+      <!-- Card 6 -->
+      <article class="card">
+        <a href="#art-6"><img src="D:/tejuu/mini/my website/5.jpg" alt="Abstract teal violet" loading="lazy"></a>
+        <div class="meta">
+          <span>Wall Art</span>
+          
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="order">
+    <h2 id="order">Ready to Order?</h2>
+    <p class="muted">Click the button to open the order form. You can request a custom commission or select an available piece.</p>
+    <!-- 🔗 Paste your Google Form link below as well -->
+    <p><a class="btn primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfCW0iOUncz1Ed2tUdai8kGtcvDvSZMC2o0f-_JUZNxpLbrdw/viewform?usp=header" target="_blank" rel="noopener">Open Order Form</a></p>
+  </section>
+
+  <footer>
+    © <span id="y"></span> GopiVAllabh Art Studio • 
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
